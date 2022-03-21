@@ -1,3 +1,8 @@
+"""
+Author: OpenAI
+Modified by: Julio Cesar RAMIREZ
+Institution: ESTIA
+"""
 import os
 import copy
 import numpy as np
