@@ -1,0 +1,42 @@
+<mujoco>
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.0 0.33 0.47" rgb2="0.4 0.5 0.4" width="32" height="32"></texture>
+        <material name="floor_mat" specular="0" shininess="0.5" reflectance="0" rgba="0.2 0.2 0.2 1"></material>
+
+        <material name="grayd" shininess="0.03" specular="0.4" reflectance="0" rgba="0.15686275 0.15686275 0.15686275 1"></material>
+        <material name="redd" shininess="0.03" specular="0.4" reflectance="0" rgba="0.8 0.14117647 0.11372549 1"></material>
+        <material name="yellowd" shininess="0.03" specular="0.4" reflectance="0" rgba="0.59607843 0.59215686 0.10196078 1"></material>
+        <material name="oranged" shininess="0.03" specular="0.4" reflectance="0" rgba="0.84313725 0.6 0.12941176 1"></material>
+        <material name="blued" shininess="0.03" specular="0.4" reflectance="0" rgba="0.27058824 0.52156863 0.53333333 1"></material>
+        <material name="purpled" shininess="0.03" specular="0.4" reflectance="0" rgba="0.69411765 0.38431373 0.5254902  1"></material>
+        <material name="greend" shininess="0.03" specular="0.4" reflectance="0" rgba="0.40784314 0.61568627 0.41568627 1"></material>
+        <material name="whited" shininess="0.03" specular="0.4" reflectance="0" rgba="0.65882353 0.6 0.51764706 1"></material>
+        <material name="grayl" shininess="0.03" specular="0.4" reflectance="0" rgba="0.57254902 0.51372549 0.45490196 1"></material>
+        <material name="redl" shininess="0.03" specular="0.4" reflectance="0" rgba="0.98431373 0.28627451 0.20392157 1"></material>
+        <material name="yellowl" shininess="0.03" specular="0.4" reflectance="0" rgba="0.72156863 0.73333333 0.14901961 1"></material>
+        <material name="orangel" shininess="0.03" specular="0.4" reflectance="0" rgba="0.98039216 0.74117647 0.18431373 1"></material>
+        <material name="bluel" shininess="0.03" specular="0.4" reflectance="0" rgba="0.51372549 0.64705882 0.59607843 1"></material>
+        <material name="purplel" shininess="0.03" specular="0.4" reflectance="0" rgba="0.82745098 0.5254902  0.60784314 1"></material>
+        <material name="greenl" shininess="0.03" specular="0.4" reflectance="0" rgba="0.55686275 0.75294118 0.48627451 1"></material>
+        <material name="whitel" shininess="0.03" specular="0.4" reflectance="0" rgba="0.92156863 0.85882353 0.69803922 1"></material>
+
+        <mesh file="J1.stl" name="robot0:shoulder_pan_link"></mesh>
+        <mesh file="J2.stl" name="robot0:shoulder_lift_link"></mesh>
+        <mesh file="J3.stl" name="robot0:elbow_flex_link"></mesh>
+        <mesh file="J4.stl" name="robot0:forearm_roll_link"></mesh>
+        <mesh file="J5.stl" name="robot0:wrist_flex_link"></mesh>
+        <mesh file="J6.stl" name="robot0:wrist_roll_link"></mesh>
+        <mesh file="Tool.stl" name="robot0:tool_link"></mesh>
+    </asset>
+
+    <equality>
+        <weld body1="robot0:tool_link" body2="robot0:mocap" solimp="0.9 0.95 0.01" solref="0.02 1"></weld>
+    </equality>
+
+    <default>
+        <default class="robot0:xarm6">
+            <geom margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" type="mesh" user="0"></geom>
+            <joint armature="1" damping="50" frictionloss="0" stiffness="0" limited="true"></joint>
+        </default>
+    </default>
+</mujoco>

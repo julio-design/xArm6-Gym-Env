@@ -1,0 +1,8 @@
+LICENCE
+README.md
+setup.py
+gym_xarm6.egg-info/PKG-INFO
+gym_xarm6.egg-info/SOURCES.txt
+gym_xarm6.egg-info/dependency_links.txt
+gym_xarm6.egg-info/requires.txt
+gym_xarm6.egg-info/top_level.txt

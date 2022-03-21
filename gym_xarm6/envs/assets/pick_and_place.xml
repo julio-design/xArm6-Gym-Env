@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco>
+    <compiler angle="degree" coordinate="local" meshdir="../assets/stls"></compiler>
+    <option timestep="0.002">
+        <flag warmstart="enable"></flag>
+    </option>
+
+    <include file="shared.xml"></include>
+
+    <worldbody>
+        <!-- ENV -->
+        <!-- set up a light pointing down on the robot -->
+        <light directional="true" pos="-0.5 0.5 3" dir="0 0 -1"></light>
+            <!-- add a floor so we don't stare off into the abyss -->
+        <geom name="floor0" pos="0 0 -0.185" size="1 1 1" type="plane" material="whitel"></geom>
+        <body name="floor0" pos="0.3 0 0">
+            <site name="target0" pos="0 0 0.3" size="0.02 0.02 0.02" rgba="0 1 0 1" type="sphere"></site>
+        </body>
+
+        <include file="xarm6.xml"></include>
+
+        <body name="object0" pos="0.5 0 0">
+                <!-- <joint name="object0:joint" type="free" damping="0.01"></joint> -->
+            <geom size="0.025 0.025 0.025" type="box" condim="3" name="object0" material="blued" mass="2"></geom>
+            <site name="object0" pos="0 0 0" size="0.02 0.02 0.02" rgba="1 0 0 1" type="sphere"></site>
+        </body>
+
+    </worldbody>
+    <actuator>
+        <motor name="joint1_motor" joint="robot0:shoulder_pan_joint"></motor>
+        <motor name="joint2_motor" joint="robot0:shoulder_lift_joint"></motor>
+        <motor name="joint3_motor" joint="robot0:elbow_flex_joint"></motor>
+        <motor name="joint4_motor" joint="robot0:forearm_roll_joint"></motor>
+        <motor name="joint5_motor" joint="robot0:wrist_flex_joint"></motor>
+        <motor name="joint6_motor" joint="robot0:wrist_roll_joint"></motor>
+    </actuator>
+</mujoco>

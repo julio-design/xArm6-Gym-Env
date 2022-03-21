@@ -1,0 +1,51 @@
+<mujoco>
+    <body mocap="true" name="robot0:mocap" pos="0.207365 0.000911 0.039464">
+        <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.7" size="0.005 0.005 0.005" type="box"></geom>
+        <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.5 0.005 0.005" type="box"></geom>
+        <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.5 0.005" type="box"></geom>
+        <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.005 0.5" type="box"></geom>
+    </body>
+    <body childclass="robot0:xarm6" name="robot0:base_link" pos="0 0 0">
+        <joint armature="0.0001" axis="1 0 0" damping="1e+11" name="robot0:slide0" pos="0 0 0" type="slide" range="-1 1"></joint>
+        <joint armature="0.0001" axis="0 1 0" damping="1e+11" name="robot0:slide1" pos="0 0 0" type="slide" range="-1 1"></joint>
+        <joint armature="0.0001" axis="0 0 1" damping="1e+11" name="robot0:slide2" pos="0 0 0" type="slide" range="-1 1"></joint>
+        <inertial diaginertia="1 1 1" mass="12.2" pos="0 0 0"></inertial>
+        <geom name="robot0:base_link" pos="0 0 -0.0925" size="0.11 0.11 0.0925" type="box" material="grayd"></geom>
+
+        <body name="robot0:shoulder_pan_link" pos="0 0 0" euler="0 0 180">
+            <geom name="robot:shoulder_pan_link" type="mesh" mesh="robot0:shoulder_pan_link" pos="0 0 0" material="blued"></geom>
+            <inertial pos="0 0 0" mass="1" diaginertia="1 1 1"></inertial>
+
+            <body name="robot0:shoulder_lift_link" pos="0 0 0">
+                <joint name="robot0:shoulder_pan_joint" axis="0 0 1" pos="0 0 0.1538" range="-360 360"></joint>
+                <geom name="robot0:shoulder_lift_link" type="mesh" mesh="robot0:shoulder_lift_link" pos="0 0 0.1538" material="whitel"></geom>
+
+                <body name="robot0:elbow_flex_link" pos="0 0 0">
+                    <joint name="robot0:shoulder_lift_joint" axis="0 -1 0" pos="-0.00035 -0.0753 0.2658" range="-118 120"></joint>
+                    <geom name="robot0:elbow_flex_link" type="mesh" mesh="robot0:elbow_flex_link" pos="-0.00035 -0.0753 0.2658" material="blued" euler="90 0 -90"></geom>
+
+                    <body name="robot0:forearm_roll_link" pos="0 0 0">
+                        <joint name="robot0:elbow_flex_joint" axis="0 -1 0" pos="-0.053662 -0.066992 0.55035" range="-225 11"></joint>
+                        <geom name="robot0:forearm_roll_link" type="mesh" mesh="robot0:forearm_roll_link" pos="-0.053662 -0.066992 0.55035" material="oranged" euler="90 0 180"></geom>
+
+                        <body name="robot0:wrist_flex_link" pos="0 0 0">
+                            <joint name="robot0:forearm_roll_joint" axis="0 0 -1" pos="-0.131362 0.000502 0.381231" range="-360 360"></joint>
+                            <geom name="robot0:wrist_flex_link" type="mesh" mesh="robot0:wrist_flex_link" pos="-0.131362 0.000502 0.381231" material="greend" euler="180 0 270"></geom>
+
+                            <body name="robot0:wrist_roll_link" pos="0 0 0">
+                                <joint name="robot0:wrist_flex_joint" axis="0 -1 0" pos="-0.131355 0.00525 0.208235" range="-97 180"></joint>
+                                <geom name="robot0:wrist_roll_link" type="mesh" mesh="robot0:wrist_roll_link" pos="-0.131355 0.00525 0.208235" material="whited" euler="90 0 0"></geom>
+
+                                <body  name="robot0:tool_link" pos="-0.207365 0.000911 0.039464">
+                                    <joint name="robot0:wrist_roll_joint" axis="0 0 -1" pos="0 0 0" range="-360 360"></joint>
+                                    <geom name="robot0:tool_link" type="mesh" mesh="robot0:tool_link" pos="0 0 0.1" material="greend" euler="180 0 0"></geom>
+                                    <site name="robot0:grip" pos="0 0 0" rgba="0 0 0 0" size="0.02 0.02 0.02"></site>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </body>
+</mujoco>

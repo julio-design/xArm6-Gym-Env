@@ -1,0 +1,3 @@
+gym[all]==0.15.3
+mujoco-py
+numpy
