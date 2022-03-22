@@ -9,8 +9,8 @@ MODEL_XML_PATH = os.path.join('assets', 'reach.xml')
 class xArm6ReachEnv(xarm6_env.xArm6Env, utils.EzPickle):
     def __init__(self, reward_type='sparse'):
         initial_qpos = {
-            'robot0:slide0': -0.3,
-            'robot0:slide1': -0.,
+            'robot0:slide0': 0.,
+            'robot0:slide1': 0.,
             'robot0:slide2': 0.,
         }
         xarm6_env.xArm6Env.__init__(

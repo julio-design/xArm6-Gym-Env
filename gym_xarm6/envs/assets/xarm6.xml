@@ -1,5 +1,5 @@
 <mujoco>
-    <body mocap="true" name="robot0:mocap" pos="0.207365 0.000911 0.039464">
+    <body mocap="true" name="robot0:mocap" pos="0 0 -0.1"> <!-- pos="0.207365 0.000911 0.039464"> -->
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.7" size="0.005 0.005 0.005" type="box"></geom>
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.5 0.005 0.005" type="box"></geom>
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.5 0.005" type="box"></geom>
@@ -39,7 +39,9 @@
                                 <body  name="robot0:tool_link" pos="-0.076010 -0.068771 0.004339" euler="90 0 0">
                                     <joint name="robot0:wrist_roll_joint" axis="0 0 1" range="-360 360"></joint>
                                     <geom name="robot0:tool_link" type="mesh" mesh="robot0:tool_link" material="greend"></geom>
-                                    <site name="robot0:grip" pos="0 0 0" rgba="0 0 0 0" size="0.02 0.02 0.02"></site>
+                                    <body>
+                                        <site name="robot0:grip" pos="0 0 0.1" rgba="0 0 0 0" size="0.02 0.02 0.02"></site>
+                                    </body>
                                 </body>
                             </body>
                         </body>
