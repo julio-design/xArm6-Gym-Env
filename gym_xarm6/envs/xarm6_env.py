@@ -1,5 +1,4 @@
 import numpy as np
-import random
 from gym_xarm6.envs import rotations, robot_env, utils
 
 
@@ -13,10 +12,10 @@ class xArm6Env(robot_env.RobotEnv):
     """
 
     def __init__(
-        self, model_path, n_substeps, gripper_extra_height, block_gripper,
-        has_object, target_in_the_air, target_offset, obj_range, target_range,
-        distance_threshold, initial_qpos, reward_type,
-    ):
+            self, model_path, n_substeps, gripper_extra_height, block_gripper,
+            has_object, target_in_the_air, target_offset, obj_range, target_range,
+            distance_threshold, initial_qpos, reward_type,
+            ):
         """Initializes a new xArm6 environment.
 
         Args:
@@ -44,10 +43,10 @@ class xArm6Env(robot_env.RobotEnv):
         self.reward_type = reward_type
 
         super(xArm6Env, self).__init__(
-            model_path=model_path, n_substeps=n_substeps, n_actions=4,
-            initial_qpos=initial_qpos)
+                model_path=model_path, n_substeps=n_substeps, n_actions=4,
+                initial_qpos=initial_qpos)
 
-    # GoalEnv methods
+        # GoalEnv methods
     # ----------------------------
 
     def compute_reward(self, achieved_goal, goal, info):
@@ -111,16 +110,16 @@ class xArm6Env(robot_env.RobotEnv):
         obs = np.concatenate([
             grip_pos, object_pos.ravel(), object_rel_pos.ravel(), gripper_state, object_rot.ravel(),
             object_velp.ravel(), object_velr.ravel(), grip_velp, gripper_vel,
-        ])
+            ])
 
         return {
-            'observation': obs.copy(),
-            'achieved_goal': achieved_goal.copy(),
-            'desired_goal': self.goal.copy(),
-        }
+                'observation': obs.copy(),
+                'achieved_goal': achieved_goal.copy(),
+                'desired_goal': self.goal.copy(),
+                }
 
-    def _viewer_setup(self):
-        body_id = self.sim.model.body_name2id('robot0:tool_link')
+        def _viewer_setup(self):
+            body_id = self.sim.model.body_name2id('robot0:tool_link')
         lookat = self.sim.data.body_xpos[body_id]
         for idx, value in enumerate(lookat):
             self.viewer.cam.lookat[idx] = value
@@ -165,10 +164,10 @@ class xArm6Env(robot_env.RobotEnv):
         else:
             #goal = self.initial_gripper_xpos[:3] + self.np_random.uniform(-0.15, 0.15, size=3)
             goal = np.array([
-                (0.7 * np.sqrt(np.random.uniform(0.1, 0.7, size=1)) * np.cos(np.random.uniform(0,2*np.pi, size=1)))[0],
-                (0.7 * np.sqrt(np.random.uniform(0.1, 0.7, size=1)) * np.sin(np.random.uniform(0,2*np.pi, size=1)))[0],
+                (0.7 * np.sqrt(np.random.uniform(0.15, 0.7, size=1)) * np.cos(np.random.uniform(0,2*np.pi, size=1)))[0],
+                (0.7 * np.sqrt(np.random.uniform(0.15, 0.7, size=1)) * np.sin(np.random.uniform(0,2*np.pi, size=1)))[0],
                 (np.random.uniform(-0.16, 0.5, size=1))[0]])
-        return goal.copy()
+            return goal.copy()
 
     def _is_success(self, achieved_goal, desired_goal):
         d = goal_distance(achieved_goal, desired_goal)
