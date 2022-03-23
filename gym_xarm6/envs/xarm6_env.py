@@ -164,8 +164,8 @@ class xArm6Env(robot_env.RobotEnv):
         else:
             #goal = self.initial_gripper_xpos[:3] + self.np_random.uniform(-0.15, 0.15, size=3)
             goal = np.array([
-                (0.7 * np.sqrt(np.random.uniform(0.15, 0.7, size=1)) * np.cos(np.random.uniform(0,2*np.pi, size=1)))[0],
-                (0.7 * np.sqrt(np.random.uniform(0.15, 0.7, size=1)) * np.sin(np.random.uniform(0,2*np.pi, size=1)))[0],
+                (0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.cos(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
+                (0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.sin(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
                 (np.random.uniform(-0.16, 0.5, size=1))[0]])
             return goal.copy()
 
