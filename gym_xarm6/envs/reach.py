@@ -14,8 +14,8 @@ class xArm6ReachEnv(xarm6_env.xArm6Env, utils.EzPickle):
             'robot0:slide2': 0.,
         }
         xarm6_env.xArm6Env.__init__(
-            self, MODEL_XML_PATH, has_object=False, block_gripper=False, n_substeps=50,
-            gripper_extra_height=0.1, target_in_the_air=False, target_offset=0.0,
-            obj_range=0.25, target_range=0.25, distance_threshold=0.005,
+            self, MODEL_XML_PATH, has_object=False, block_gripper=False, n_substeps=20,
+            gripper_extra_height=0.1, target_in_the_air=True, target_offset=0.0,
+            obj_range=0.25, target_range=0.25, distance_threshold=0.0005,
             initial_qpos=initial_qpos, reward_type=reward_type)
         utils.EzPickle.__init__(self)

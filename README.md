@@ -1,7 +1,7 @@
 # xArm6 inverse kinematics with DDPG+HER
 Creation of a new environment in OpenAI gym for the xArm6 robot from UFactory. The model uses [Deep Deterministic Policy Gradient](https://arxiv.org/abs/1509.02971) (DDPG) for continious actions and [Hindsight Experience Replay](https://arxiv.org/abs/1707.01495) (HER).
 
-## Usage and installation
+## Installation
 Follow this instructions to be able to use the xArm6 enviroment for OpenAI gym. You can use your own policies to train the model, but here we will use DDPG + HER.
 
 Before the installation, we need to get [MuJoCo](https://mujoco.org) (multi-joint dynamics in contact) physics simulator.
