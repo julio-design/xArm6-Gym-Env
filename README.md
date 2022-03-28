@@ -17,7 +17,7 @@ Before the installation, we need to get [MuJoCo](https://mujoco.org) (multi-join
 4. Modify the `.bashrc` and add the following lines:
 
 ```
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/julio/.mujoco/mujoco200/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/your/home/dir/.mujoco/mujoco200/bin
 ```
 
 5. Test that MuJoCo is working properly.
