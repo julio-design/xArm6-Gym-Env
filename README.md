@@ -13,7 +13,7 @@ Before the installation, we need to get [MuJoCo](https://mujoco.org) (multi-join
     + [Linux](https://roboti.us/download/mujoco200_linux.zip)
     + [MacOS](https://roboti.us/download/mujoco200_macos.zip)
 2. Create a folder in your home directory named `.mujoco` and unzip the file here.
-3. Download the [activation key licence](https://roboti.us/file/mjkey.txt) and put it inside `.mujoco/mujoco200/`.
+3. Download the [activation key licence](https://roboti.us/file/mjkey.txt) and put it inside `.mujoco/mujoco200/` and `.mujoco/mujoco200/bin/`.
 4. Modify the `.bashrc` and add the following lines:
 
 ```

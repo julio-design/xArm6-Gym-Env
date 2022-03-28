@@ -1,5 +1,5 @@
 <mujoco>
-    <body mocap="true" name="robot0:mocap" pos="0 0 0" euler="0 0 180"> <!-- pos="0.207365 0.000911 0.039464"> -->
+    <body mocap="true" name="robot0:mocap" pos="0 0 0" euler="0 0 0"> <!-- pos="0.207365 0.000911 0.039464"> -->
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.7" size="0.005 0.005 0.005" type="box"></geom>
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.5 0.005 0.005" type="box"></geom>
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.5 0.005" type="box"></geom>
@@ -45,7 +45,10 @@
                                     <inertial diaginertia="0.0132 0.0130 0.0224" mass="0.308" pos="0.00033 0 0.013291"></inertial>
                                     <joint name="robot0:wrist_roll_joint" axis="0 0 1" range="-360 360"></joint>
                                     <geom name="robot0:tool_link" type="mesh" mesh="robot0:tool_link" material="greend" euler="0 0 180"></geom>
-                                    <site name="robot0:grip" pos="0 0 0.1" rgba="0 0 0 0" size="0.02 0.02 0.02" euler="0 0 0"></site>
+                                    <body name="robot0:gripper_link" pos="0 0 0.17">
+                                        <geom name="robot0:gripper_link" type="box" size="0.02 0.05 0.05" pos="0 0 0"></geom>
+                                        <site name="robot0:grip" pos="0 0 0.078" rgba="0 0 0 0" size="0.02 0.02 0.02" euler="0 0 0"></site>
+                                    </body>
                                 </body>
                             </body>
                         </body>
