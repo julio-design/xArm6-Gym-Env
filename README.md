@@ -33,4 +33,4 @@ Now clone this repository.
 git clone https://github.com/ollintzinlab/xArm6-Gym-Env.git
 ```
 
-Once you have it, run `pip install -e .` to install the environment.
+Once you have it, `cd` into the cloned directory an run `pip install -e .` to install the environment.
