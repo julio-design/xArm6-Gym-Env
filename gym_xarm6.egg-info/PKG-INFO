@@ -1,10 +1,13 @@
-Metadata-Version: 1.0
+Metadata-Version: 2.1
 Name: gym-xarm6
 Version: 0.0.1
-Summary: xArm 6 robot environment for gym
+Summary: xArm 6 robot environment for gym. It also contains a kinematic model of the robot.
 Home-page: https://github.com/ollintzinlab/xArm6-Gym-Env
 Author: Julio Ramirez
 Author-email: julio@jcrcx.xyz
 License: MIT
-Description: UNKNOWN
 Platform: UNKNOWN
+License-File: LICENCE
+
+UNKNOWN
+
