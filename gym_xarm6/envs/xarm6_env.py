@@ -1,55 +1,7 @@
 import numpy as np
 from gym_xarm6.envs import rotations, robot_env, utils
-
-import numpy as np
-import pybullet as p
-import pybullet_data
 import time
-
-class xArmEnv_pybullet():
-    def __init__(self):
-        self.state = self.init_state()
-        self.step_count = 0
-
-    def init_state(self):
-        p.connect(p.GUI)
-        p.resetSimulation()
-        p.setAdditionalSearchPath(pybullet_data.getDataPath())
-        p.setGravity(0,0,-9.8)
-        self.robotid = p.loadURDF("xarm/xarm6_robot.urdf", [0, 0, 0,], [0, 0, 0, 1], useFixedBase = True)
-        p.loadURDF("plane.urdf", [0, 0, 0], [0, 0, 0, 1])
-        self.focus_position, _ = p.getBasePositionAndOrientation(self.robotid)
-        p.resetDebugVisualizerCamera(cameraDistance=3, cameraYaw=0, cameraPitch=-40, cameraTargetPosition = self.focus_position)
-        tool_pos = p.getLinkState(self.robotid, 6) [:2]
-        obs = np.array([tool_pos]).flatten()
-        return obs
-
-    def reset(self):
-        p.disconnect()
-        self.state = self.init_state()
-        self.step_count = 0
-
-    def step(self, action):
-        self.step_count += 1
-        p.setJointMotorControlArray(self.robotid, [1, 2, 3, 4, 5, 6], p.POSITION_CONTROL, [action])
-        p.stepSimulation()
-        tool_pos = p.getLinkState(self.robotid, 6)[:2]
-
-        if (self.step_count >= 50):
-            self.reset()
-            tool_pos = p.getLinkState(self.robotid, 6)[:2]
-            obs = np.array([tool_pos]).flatten()
-            self.state = obs
-            reward = -1
-            done = True
-            return reward, done
-
-        obs = np.array([tool_pos]).flatten()
-        self.state = obs
-        done = False
-        reward = -1
-        return reward, done
-
+from gym_xarm6.data import dhm
 
 def goal_distance(goal_a, goal_b):
     assert goal_a.shape == goal_b.shape
@@ -92,7 +44,7 @@ class xArm6Env(robot_env.RobotEnv):
         self.reward_type = reward_type
 
         super(xArm6Env, self).__init__(
-                model_path=model_path, n_substeps=n_substeps, n_actions=4,
+                model_path=model_path, n_substeps=n_substeps, n_actions=7,
                 initial_qpos=initial_qpos)
 
         # GoalEnv methods
@@ -115,12 +67,13 @@ class xArm6Env(robot_env.RobotEnv):
             self.sim.forward()
 
     def _set_action(self, action):
-        assert action.shape == (4,)
+        assert action.shape == (7,)
         action = action.copy()  # ensure that we don't change the action outside of this scope
         pos_ctrl, gripper_ctrl = action[:3], action[3]
 
         pos_ctrl *= 0.02  # limit maximum change in position
-        rot_ctrl = [0., 0., 0., 0.]  # fixed rotation of the end effector, expressed as a quaternion
+        #rot_ctrl = [0., 0., 0., 0.]  # fixed rotation of the end effector, expressed as a quaternion
+        rot_ctrl = action[3:]
         gripper_ctrl = np.array([gripper_ctrl, gripper_ctrl])
         assert gripper_ctrl.shape == (2,)
         if self.block_gripper:
@@ -212,10 +165,13 @@ class xArm6Env(robot_env.RobotEnv):
                 goal[2] += self.np_random.uniform(0, 0.45)
         else:
             #goal = self.initial_gripper_xpos[:3] + self.np_random.uniform(-0.15, 0.15, size=3)
-            goal = np.array([
-                (0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.cos(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
-                (0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.sin(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
-                (np.random.uniform(-0.16, 0.5, size=1))[0]])
+            #goal = np.array([
+                #(0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.cos(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
+                #(0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.sin(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
+                #(np.random.uniform(-0.16, 0.5, size=1))[0]])
+
+            # Points from the actual DHM model of the robot.
+            goal = dhm.get_pos_orn()[:3]
             return goal.copy()
 
     def _is_success(self, achieved_goal, desired_goal):
@@ -230,7 +186,8 @@ class xArm6Env(robot_env.RobotEnv):
 
         # Move end effector into position.
         gripper_target = np.array([0., 0., 0. + self.gripper_extra_height]) + self.sim.data.get_site_xpos('robot0:grip')
-        gripper_rotation = np.array([1., 0., 1., 0.])
+        #gripper_rotation = np.array([1., 0., 1., 0.])
+        gripper_rotation = dhm.get_pos_orn()[3:]
         self.sim.data.set_mocap_pos('robot0:mocap', gripper_target)
         self.sim.data.set_mocap_quat('robot0:mocap', gripper_rotation)
         for _ in range(10):

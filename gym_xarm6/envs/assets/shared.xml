@@ -1,6 +1,15 @@
 <mujoco>
+    <visual>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <quality shadowsize="2048"/>
+        <map stiffness="700" shadowscale="0.5" fogstart="10" fogend="15" zfar="40" haze="0.3"/>
+    </visual>
+
     <asset>
         <texture type="skybox" builtin="gradient" rgb1="0.0 0.33 0.47" rgb2="0.4 0.5 0.4" width="32" height="32"></texture>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
         <material name="floor_mat" specular="0" shininess="0.5" reflectance="0" rgba="0.2 0.2 0.2 1"></material>
 
         <material name="grayd" shininess="0.03" specular="0.4" reflectance="0" rgba="0.15686275 0.15686275 0.15686275 1"></material>
@@ -30,7 +39,7 @@
     </asset>
 
     <equality>
-        <weld body1="robot0:tool_link" body2="robot0:mocap" solimp="0.9 0.95 0.01" solref="0.02 1"></weld>
+        <weld body1="robot0:gripper_link" body2="robot0:mocap" solimp="0.9 0.95 0.01" solref="0.02 1"></weld>
     </equality>
 
     <default>

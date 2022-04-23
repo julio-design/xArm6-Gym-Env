@@ -11,7 +11,7 @@ for reward_type in ['sparse', 'dense']:
     }
 
     register(
-        id='xArm6Reach{}-v0'.format(suffix),
+        id='xArm6Reach{}-v1'.format(suffix),
         entry_point='gym_xarm6.envs:xArm6ReachEnv',
         kwargs=kwargs,
         max_episode_steps=100,

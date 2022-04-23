@@ -3,7 +3,10 @@ import pybullet as p
 import pybullet_data
 import time
 
-"""
+def goal_distance(goal_a, goal_b):
+    assert goal_a.shape == goal_b.shape
+    return np.linalg.norm(goal_a - goal_b, axis=-1)
+
 class xArmEnv():
     def __init__(self):
         self.state = self.init_state()
@@ -26,6 +29,11 @@ class xArmEnv():
         p.disconnect()
         self.state = self.init_state()
         self.step_count = 0
+        return True
+
+    def compute_reward(self, achived_goal, goal, info):
+        d = goal_distance(achived_goal, goal)
+        return -d
 
     def step(self, action):
         self.step_count += 1
@@ -47,8 +55,8 @@ class xArmEnv():
         done = False
         reward = -1
         return reward, done
-"""
 
+'''
 p.connect(p.GUI)
 p.resetSimulation()
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -83,3 +91,4 @@ for step in range(1000):
     p.resetDebugVisualizerCamera(cameraDistance=3, cameraYaw=0, cameraPitch=-40, cameraTargetPosition = focus_position)
     p.stepSimulation()
     time.sleep(.01)
+'''
