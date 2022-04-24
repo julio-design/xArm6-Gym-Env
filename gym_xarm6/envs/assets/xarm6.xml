@@ -1,35 +1,35 @@
 <mujoco>
     <body mocap="true" name="robot0:mocap" pos="0 0 0" quat="0 0 0 1"> <!-- pos="0.207365 0.000911 0.039464"> -->
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.7" size="0.005 0.005 0.005" type="box"></geom>
-        <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.5 0.005 0.005" type="box"></geom>
+        <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0.5 0 0 0.1" size="0.5 0.005 0.005" type="box"></geom>
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.5 0.005" type="box"></geom>
-        <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.005 0.5" type="box"></geom>
+        <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0 0.5 0.1" size="0.005 0.005 0.5" type="box"></geom>
     </body>
     <body childclass="robot0:xarm6" name="robot0:base_link" pos="0 0 0">
-        <joint armature="0.0001" axis="1 0 0" damping="1e+11" name="robot0:slide0" pos="0 0 0" type="slide" range="-1 1"></joint>
-        <joint armature="0.0001" axis="0 1 0" damping="1e+11" name="robot0:slide1" pos="0 0 0" type="slide" range="-1 1"></joint>
-        <joint armature="0.0001" axis="0 0 1" damping="1e+11" name="robot0:slide2" pos="0 0 0" type="slide" range="-1 1"></joint>
+        <joint armature="0.0001" axis="1 0 0" damping="1e+11" name="robot0:slide0" pos="0 0 0" type="slide" limited="false"></joint>
+        <joint armature="0.0001" axis="0 1 0" damping="1e+11" name="robot0:slide1" pos="0 0 0" type="slide" limited="false"></joint>
+        <joint armature="0.0001" axis="0 0 1" damping="1e+11" name="robot0:slide2" pos="0 0 0" type="slide" limited="false"></joint>
         <inertial diaginertia="0 0 0" mass="12.2" pos="0 0 0"></inertial>
         <geom name="robot0:base_link" pos="0 0 -0.0925" size="0.11 0.11 0.0925" type="box" material="grayd"></geom>
 
         <body name="robot0:shoulder_pan_link" pos="0 0 0" euler="0 0 0">
-            <geom name="robot0:shoulder_pan_link" type="mesh" mesh="robot0:shoulder_pan_link" pos="0 0 0" material="blued" euler="0 0 180"></geom>
+            <geom name="robot0:shoulder_pan_link" type="mesh" mesh="robot0:shoulder_pan_link" pos="0 0 0" material="bluel" euler="0 0 180"></geom>
             <inertial pos="0.001343 0.000671 0.072474" mass="1.872" diaginertia="0.5106 0.5207 0.2403"></inertial>
 
             <body name="robot0:shoulder_lift_link" pos="0 0 0.1538" euler="0 0 0">
                 <inertial diaginertia="0.6252 0.5179 0.3507" mass="2.121" pos="-0.000212 -0.007394 0.085087"></inertial>
                 <joint name="robot0:shoulder_pan_joint" axis="0 0 1" range="-360 360"></joint>
-                <geom name="robot0:shoulder_lift_link" type="mesh" mesh="robot0:shoulder_lift_link" material="whitel" euler="0 0 180"></geom>
+                <geom name="robot0:shoulder_lift_link" type="mesh" mesh="robot0:shoulder_lift_link" material="redl" euler="0 0 180"></geom>
 
                 <body name="robot0:elbow_flex_link" pos="0.000350 0.075295 0.112000" euler="-90 0 -90">
                     <inertial diaginertia="1.39208 4.8561 4.3044" mass="4.221" pos="-0.166244 0.013808 -0.049289"></inertial>
                     <joint name="robot0:shoulder_lift_joint" axis="0 0 1" range="-118 120"></joint>
-                    <geom name="robot0:elbow_flex_link" type="mesh" mesh="robot0:elbow_flex_link" material="blued" euler="0 0 180"></geom>
+                    <geom name="robot0:elbow_flex_link" type="mesh" mesh="robot0:elbow_flex_link" material="yellowl" euler="0 0 180"></geom>
 
                     <body name="robot0:forearm_roll_link" pos="0.284550 0.053312 -0.008303" euler="0 0 90">
                         <inertial diaginertia="0.8452 0.6215 0.7184" mass="2.084" pos="0.053322 0.081421 -0.02986"></inertial>
                         <joint name="robot0:elbow_flex_joint" axis="0 0 1" range="-225 11"></joint>
-                        <geom name="robot0:forearm_roll_link" type="mesh" mesh="robot0:forearm_roll_link" material="oranged" euler="0 0 0"></geom>
+                        <geom name="robot0:forearm_roll_link" type="mesh" mesh="robot0:forearm_roll_link" material="bluel" euler="0 0 0"></geom>
 
                         <body name="robot0:wrist_flex_link" pos="0.077700 0.169121 -0.067495" euler="-90 0 0">
                             <inertial diaginertia="0.6306 0.6999 0.1661" mass="1.263" pos="0.032424 0.000174 0.101052"></inertial>
@@ -39,14 +39,16 @@
                             <body name="robot0:wrist_roll_link" pos="-0.000006 0.004747 0.172996" euler="90 0 0">
                                 <inertial diaginertia="0.1346 0.2327 0.2669" mass="1.157" pos="-0.048945 -0.11379 0.013355"></inertial>
                                 <joint name="robot0:wrist_flex_joint" axis="0 0 1" range="-97 180"></joint>
-                                <geom name="robot0:wrist_roll_link" type="mesh" mesh="robot0:wrist_roll_link" material="whited" euler="0 0 180"></geom>
+                                <geom name="robot0:wrist_roll_link" type="mesh" mesh="robot0:wrist_roll_link" material="redl" euler="0 0 180"></geom>
 
-                                <body  name="robot0:tool_link" pos="0.076010 0.068771 0.004339" euler="-90 0 0">
+                                <body name="robot0:tool_link" pos="0.076010 0.068771 0.004339" euler="-90 0 0">
                                     <inertial diaginertia="0.0132 0.0130 0.0224" mass="0.308" pos="0.00033 0 0.013291"></inertial>
                                     <joint name="robot0:wrist_roll_joint" axis="0 0 1" range="-360 360"></joint>
-                                    <geom name="robot0:tool_link" type="mesh" mesh="robot0:tool_link" material="greend" euler="0 0 180"></geom>
-                                    <body name="robot0:gripper_link" pos="0 0 0.1" quat="1 0 0 0">
-                                        <site name="robot0:grip" pos="0 0 0" rgba="0 1 0 .5" size="0.02 0.02 0.02" type="box"></site>
+                                    <geom name="robot0:tool_link" type="mesh" mesh="robot0:tool_link" material="whitel" euler="0 0 90"></geom>
+                                    <body name="robot0:gripper_link" pos="0 0 0.185" quat="1 0 0 0">
+                                        <!-- comment this line to not include the gripper -->
+                                        <include file="gripper.xml" quat="0 0 0 1"></include>
+                                        <site name="robot0:grip" pos="0 0 0" rgba="0 1 0 .7" size="0.01 0.01 0.01" type="box"></site>
                                     </body>
                                 </body>
                             </body>

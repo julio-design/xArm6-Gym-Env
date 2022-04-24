@@ -31,7 +31,7 @@ from gym_xarm6.data.libdhm import dhm, quat, rad2deg, deg2rad
 
 def get_pos_orn():
     # Joint Limints
-    q1 = random.uniform(deg2rad(0), deg2rad(0)) # -360 to 360
+    q1 = random.uniform(deg2rad(-360), deg2rad(360)) # -360 to 360
     q2 = random.uniform(deg2rad(-118), deg2rad(120))
     q3 = random.uniform(deg2rad(-225), deg2rad(11))
     q4 = random.uniform(deg2rad(-360), deg2rad(360))

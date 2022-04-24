@@ -72,8 +72,8 @@ class xArm6Env(robot_env.RobotEnv):
         pos_ctrl, gripper_ctrl = action[:3], action[3]
 
         pos_ctrl *= 0.02  # limit maximum change in position
-        #rot_ctrl = [0., 0., 0., 0.]  # fixed rotation of the end effector, expressed as a quaternion
-        rot_ctrl = action[3:]
+        rot_ctrl = [0., 0., 0., 0.]  # fixed rotation of the end effector, expressed as a quaternion
+        #rot_ctrl = action[3:]
         gripper_ctrl = np.array([gripper_ctrl, gripper_ctrl])
         assert gripper_ctrl.shape == (2,)
         if self.block_gripper:
@@ -165,13 +165,13 @@ class xArm6Env(robot_env.RobotEnv):
                 goal[2] += self.np_random.uniform(0, 0.45)
         else:
             #goal = self.initial_gripper_xpos[:3] + self.np_random.uniform(-0.15, 0.15, size=3)
-            #goal = np.array([
-                #(0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.cos(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
-                #(0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.sin(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
-                #(np.random.uniform(-0.16, 0.5, size=1))[0]])
+            goal = np.array([
+                (0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.cos(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
+                (0.7 * np.sqrt(np.random.uniform(0.2, 0.7, size=1)) * np.sin(np.random.uniform(-0.25*np.pi,0.25*np.pi, size=1)))[0],
+                (np.random.uniform(-0.16, 0.5, size=1))[0]])
 
             # Points from the actual DHM model of the robot.
-            goal = dhm.get_pos_orn()[:3]
+            #goal = dhm.get_pos_orn()[:3]
             return goal.copy()
 
     def _is_success(self, achieved_goal, desired_goal):
@@ -186,8 +186,8 @@ class xArm6Env(robot_env.RobotEnv):
 
         # Move end effector into position.
         gripper_target = np.array([0., 0., 0. + self.gripper_extra_height]) + self.sim.data.get_site_xpos('robot0:grip')
-        #gripper_rotation = np.array([1., 0., 1., 0.])
-        gripper_rotation = dhm.get_pos_orn()[3:]
+        gripper_rotation = np.array([1., 0., 1., 0.])
+        #gripper_rotation = dhm.get_pos_orn()[3:]
         self.sim.data.set_mocap_pos('robot0:mocap', gripper_target)
         self.sim.data.set_mocap_quat('robot0:mocap', gripper_rotation)
         for _ in range(10):

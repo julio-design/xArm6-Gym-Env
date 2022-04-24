@@ -1,0 +1,19 @@
+<mujoco>
+    <body name="robot0:gripper_base_link" pos="0 0 -0.157">
+        <geom material="greend" name="robot0:gripper_base_link" mesh="robot0:gripper_base_link" quat="0 0 0 1"/>
+
+        <!-- left finger -->
+        <body name="robot0:left_finger" pos="0 -0.032 0.115" quat="0 0 0 1">
+            <geom material="orangel" name="robot0:left_finger" mesh="robot0:left_finger"/>
+            <joint name="robot0:left_finger_joint" axis="0 -1 0" type="slide"
+                range="-0.03 0.006" pos="0 0 0"/>
+        </body>
+
+        <!-- right finger -->
+        <body name="robot0:right_finger" pos="0 0.032 0.115" quat="0 0 0 1">
+            <geom material="orangel" name="robot0:right_finger" mesh="robot0:right_finger"/>
+            <joint name="robot0:right_finger_joint" axis="0 1 0" type="slide"
+                range="-0.03 0.006" pos="0 0 0"/>
+        </body>
+    </body>
+</mujoco>
