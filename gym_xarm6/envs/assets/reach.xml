@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 Author: Julio Cesar Ramirez Ceballos
 Institution: ESTIA
 Created: 02/2022
 Licence: MIT
 -->
-<?xml version="1.0" encoding="utf-8"?>
+
 <mujoco>
     <compiler angle="degree" coordinate="local" meshdir="../assets/stls" texturedir="../textures"></compiler>
     <option timestep="0.002" gravity="0 0 -9.8">
@@ -23,7 +24,7 @@ Licence: MIT
         <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false"/>
         <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
 
-        <geom name="ground" type="plane" size="0 0 1" pos="0 0 -1.185" quat="1 0 0 0" material="matplane" condim="1"/>
+        <geom name="ground" type="plane" size="0 0 1" pos="0 0 -0.185" quat="1 0 0 0" material="matplane" condim="1"/>
     </worldbody>
 
     <actuator>

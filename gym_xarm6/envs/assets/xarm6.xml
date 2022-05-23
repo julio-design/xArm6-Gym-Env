@@ -1,5 +1,5 @@
 <mujoco>
-    <body mocap="true" name="robot0:mocap" pos="0 0 0" quat="0 0 0 1"> <!-- pos="0.207365 0.000911 0.039464"> -->
+    <body mocap="true" name="robot0:mocap" pos="0 0 0" quat="0 0 0 0"> <!-- pos="0.207365 0.000911 0.039464"> -->
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.7" size="0.005 0.005 0.005" type="box"></geom>
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0.5 0 0 0.1" size="0.5 0.005 0.005" type="box"></geom>
         <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.5 0.005" type="box"></geom>
@@ -47,7 +47,7 @@
                                     <geom name="robot0:tool_link" type="mesh" mesh="robot0:tool_link" material="whitel" euler="0 0 90"></geom>
                                     <body name="robot0:gripper_link" pos="0 0 0.185" quat="1 0 0 0">
                                         <!-- comment this line to not include the gripper -->
-                                        <include file="gripper.xml" quat="0 0 0 1"></include>
+                                        <!-- <include file="gripper.xml" quat="0 0 0 1"></include> -->
                                         <site name="robot0:grip" pos="0 0 0" rgba="0 1 0 .7" size="0.01 0.01 0.01" type="box"></site>
                                     </body>
                                 </body>

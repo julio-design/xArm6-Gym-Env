@@ -44,7 +44,7 @@ class xArm6Env(robot_env.RobotEnv):
         self.reward_type = reward_type
 
         super(xArm6Env, self).__init__(
-                model_path=model_path, n_substeps=n_substeps, n_actions=7,
+                model_path=model_path, n_substeps=n_substeps, n_actions=4,
                 initial_qpos=initial_qpos)
 
         # GoalEnv methods
@@ -67,7 +67,7 @@ class xArm6Env(robot_env.RobotEnv):
             self.sim.forward()
 
     def _set_action(self, action):
-        assert action.shape == (7,)
+        assert action.shape == (4,)
         action = action.copy()  # ensure that we don't change the action outside of this scope
         pos_ctrl, gripper_ctrl = action[:3], action[3]
 
@@ -120,8 +120,8 @@ class xArm6Env(robot_env.RobotEnv):
                 'desired_goal': self.goal.copy(),
                 }
 
-        def _viewer_setup(self):
-            body_id = self.sim.model.body_name2id('robot0:tool_link')
+    def _viewer_setup(self):
+        body_id = self.sim.model.body_name2id('robot0:tool_link')
         lookat = self.sim.data.body_xpos[body_id]
         for idx, value in enumerate(lookat):
             self.viewer.cam.lookat[idx] = value
@@ -186,7 +186,7 @@ class xArm6Env(robot_env.RobotEnv):
 
         # Move end effector into position.
         gripper_target = np.array([0., 0., 0. + self.gripper_extra_height]) + self.sim.data.get_site_xpos('robot0:grip')
-        gripper_rotation = np.array([1., 0., 1., 0.])
+        gripper_rotation = np.array([0., 0., 0., 0.])
         #gripper_rotation = dhm.get_pos_orn()[3:]
         self.sim.data.set_mocap_pos('robot0:mocap', gripper_target)
         self.sim.data.set_mocap_quat('robot0:mocap', gripper_rotation)
