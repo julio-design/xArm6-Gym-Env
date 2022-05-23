@@ -8,23 +8,16 @@
     <include file="shared.xml"></include>
 
     <worldbody>
-        <!-- ENV -->
-        <!-- set up a light pointing down on the robot -->
-        <light directional="true" pos="-0.5 0.5 3" dir="0 0 -1"></light>
-            <!-- add a floor so we don't stare off into the abyss -->
-        <geom name="floor0" pos="0 0 -0.185" size="1 1 1" type="plane" material="whitel"></geom>
-        <body name="floor0" pos="0.3 0 0">
-            <site name="target0" pos="0 0 0.3" size="0.02 0.02 0.02" rgba="0 1 0 1" type="sphere"></site>
+        <body name="floor0" pos="0 0 0">
+            <site name="target0" pos="0.5 0 -0.165" size="0.02 0.02 0.02" rgba="1 0 0 1" type="sphere"></site>
         </body>
 
         <include file="xarm6.xml"></include>
 
-        <body name="object0" pos="0.5 0 0">
-                <!-- <joint name="object0:joint" type="free" damping="0.01"></joint> -->
-            <geom size="0.025 0.025 0.025" type="box" condim="3" name="object0" material="blued" mass="2"></geom>
-            <site name="object0" pos="0 0 0" size="0.02 0.02 0.02" rgba="1 0 0 1" type="sphere"></site>
-        </body>
+        <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false"/>
+        <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
 
+        <geom name="ground" type="plane" size="0 0 1" pos="0 0 -0.185" quat="1 0 0 0" material="matplane" condim="1"/>
     </worldbody>
     <actuator>
         <motor name="joint1_motor" joint="robot0:shoulder_pan_joint"></motor>

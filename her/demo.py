@@ -6,6 +6,7 @@ import gym
 sys.path.insert(1, '../xarm6')
 import gym_xarm6
 import numpy as np
+import baselines.common.plot_util
 
 # process the inputs
 def process_inputs(o, g, o_mean, o_std, g_mean, g_std, args):

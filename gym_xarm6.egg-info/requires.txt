@@ -1,5 +1,8 @@
 gym[all]==0.15.3
 mujoco-py
+mujoco
 torch
 mpi4py
+pybullet
+tensorflow
 numpy
